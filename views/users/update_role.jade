@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+    form.form-horizontal(method='post', action='/user/change-role', enctype='multipart/form-data')
+        fieldset
+        // Form Name
+        legend Quy&#x1EC1;n User
+        // Text input
+        .form-group
+            label.col-md-4.control-label(for='textinput') T&ecirc;n       
+            .col-md-6
+                input#inputName.form-control.input-md(name='name', value='', type='text', readonly='')
+        // Text input
+        .form-group
+            label.col-md-4.control-label(for='textinput') Email     
+            .col-md-6
+                input#inputMail.form-control.input-md(name='email', value='', type='text', readonly='')
+        // Radio
+        .form-group
+            label.col-md-4.control-label(for='radios') Role        
+            .col-md-4
+                label.radio-inline(for='radios-0')
+                    input#radios-0(name='role', value='1', type='radio')
+                    |                 Admin          
+                label.radio-inline(for='radios-1')
+                    input#radios-1(name='role', value='2', type='radio')
+                    |                 User
+        // Button (Double)
+        .form-group
+            label.col-md-4.control-label(for='button1id')       
+            .col-md-8
+                button#button1id.btn.btn-success(type='submit', name='submit') X&aacute;c nh&#x1EAD;n
+                |             
+                button#button2id.btn.btn-danger(type='reset', name='reset', value='Làm mới') L&agrave;m m&#x1EDB;i

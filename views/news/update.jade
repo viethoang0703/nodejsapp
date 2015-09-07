@@ -1,0 +1,61 @@
+extends ../layout
+
+block content
+  form.form-horizontal(method='post', action='/admin/news/edit', enctype='multipart/form-data')
+      fieldset
+          // Form Name
+          legend S&#x1EED;a b&agrave;i vi&#x1EBF;t
+          // Text input
+          .form-group
+            label.col-md-4.control-label(for='textinput') Ti&ecirc;u &dstrok;&#x1EC1; b&agrave;i vi&#x1EBF;t
+            |         
+            .col-md-6
+              input#textinput.form-control.input-md(name='news_tittle', value='', type='text')
+          // Select Basic
+          .form-group
+            label.col-md-4.control-label(for='selectbasic') Chuy&ecirc;n m&#x1EE5;c
+            |         
+            .col-md-6
+              select#selectbasic.form-control(name='news_category')
+                option(selected='selected', value='0') cat_name
+                |                    
+                option(value='1') cat_name1
+                |               &#x9;   
+                option(value='2') cat_name2
+                |               &#x9;   
+                option(value='2') cat_name2
+          // File Button
+          .form-group
+            label.col-md-4.control-label(for='filebutton') &#x1EA2;nh m&ocirc; t&#x1EA3;
+            |         
+            .col-md-4
+              input#filebutton.input-file(name='news_image', type='file')
+              |                
+              img(width='150px', src='', value='news_image', alt='', tittle='')
+              |             
+              input(type='hidden', name='news_image_temp', value='')
+          // Multiple Radios (inline)
+          .form-group
+            label.col-md-4.control-label(for='radios') Status
+            |         
+            .col-md-4
+              label.radio-inline(for='radios-0')
+                input#radios-0(name='news_status', value='1', type='radio')
+                |                 New
+              label.radio-inline(for='radios-1')
+                input#radios-1(name='news_status', value='0', type='radio')
+                |                 Old
+          // Textarea
+          .form-group
+            label.col-md-4.control-label(for='textarea') N&#x1ED9;i dung chi ti&#x1EBF;t
+            |         
+            .col-md-6
+              textarea#summernote.form-control(name='news_detail', rows='8') Noi dung
+          // Button (Double)
+          .form-group
+            label.col-md-4.control-label(for='button1id')
+            |         
+            .col-md-8
+              button#button1id.btn.btn-success(type='submit', name='submit') &Dstrok;&#x1ED3;ng &yacute;
+              |             
+              button#button2id.btn.btn-danger(type='reset', name='reset', value='Làm mới') L&agrave;m m&#x1EDB;i

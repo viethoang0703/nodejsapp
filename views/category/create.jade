@@ -1,0 +1,29 @@
+extends ../layout
+
+block content
+    form.form-horizontal(method='post', action='/category/add', enctype='multipart/form-data')
+        fieldset
+        // Form Name
+        legend Danh m&#x1EE5;c m&#x1EDB;i
+        // Text input
+        .form-group
+            label.col-md-4.control-label(for='textinput') T&ecirc;n danh m&#x1EE5;c     
+            .col-md-6
+                input#textinput.form-control.input-md(name='cat_name', value='', placeholder='Nhập tên danh mục', type='text', required='')
+            // Multiple Radios (inline)
+        .form-group
+            label.col-md-4.control-label(for='radios') Status      
+            .col-md-4
+                label.radio-inline(for='radios-0')
+                    input#radios-0(name='cat_status', value='1', checked='checked', type='radio')
+                    |                 New           
+                label.radio-inline(for='radios-1')
+                    input#radios-1(name='cat_status', value='0', type='radio')
+                    |                 Old
+            // Button (Double)
+        .form-group
+            label.col-md-4.control-label(for='button1id')       
+            .col-md-8
+                button#button1id.btn.btn-success(type='submit', name='submit') &Dstrok;&#x1ED3;ng &yacute; 
+                |        
+                button#button2id.btn.btn-danger(type='reset', name='reset', value='Làm mới') L&agrave;m m&#x1EDB;i

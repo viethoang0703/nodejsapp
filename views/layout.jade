@@ -1,7 +1,34 @@
-doctype html
-html
-  head
+doctype
+html(lang='en')
+head
+    meta(charset='utf-8')
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no')
+    link(rel='stylesheet', type='text/css', href='/admins/css/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='/admins/css/bootstrap-theme.min.css')
+    link(href='//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', href='/summernote-master/dist/summernote.css')
+    style(type='text/css').
+      .container{
+      margin: 20px auto;
+      }
   body
-    block content
+    .container
+      // Static navbar
+      include ./backend/navbar.jade
+      // End navbar
+      // Content
+      block content
+      // End Content
+      // Footer
+      include ./backend/footer.jade
+      // End Footer
+    // End .container
+    script(type='text/javascript', src='/admins/js/jquery-1.11.3.min.js')
+    script(type='text/javascript', src='/admins/js/bootstrap.min.js')
+    script(type='text/javascript', src='/summernote-master/dist/summernote.min.js')
+    script(type='text/javascript', src='/admins/js/admin.js')
+
+

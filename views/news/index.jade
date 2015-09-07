@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  .row
+    h4
+        a(href='/news/create') Th&ecirc;m m&#x1EDB;i b&agrave;i vi&#x1EBF;t    
+    .table-responsive
+        table.table.table-striped.table-hover.table-bordered
+            thead
+                tr
+                    th ID                    
+                    th Tittle                    
+                    th Category                    
+                    th Status                    
+                    th Edit                    
+                    th Delete           
+            tbody
+                each nam in news
+                    tr 
+                        td #{nam.id}                   
+                        td #{nam.news_tittle}             
+                        td #{nam.news_category}                    
+                        td #{nam.news_status}                    
+                        td
+                            a(href='/news/update/#{nam.id}')
+                                span.glyphicon.glyphicon-pencil(aria-hidden='true')
+                                |  Edit                  
+                        td
+                            a(href='/news/delete/#{nam.id}')
+                                span.glyphicon.glyphicon-trash(aria-hidden='true')
+                                |  Delete       
+            .pull-right

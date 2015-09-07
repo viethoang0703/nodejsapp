@@ -1,0 +1,67 @@
+extends ../layout
+
+block content
+  case status
+    when "success"
+      div(class="alert alert-success")
+        p #{message}
+
+    when "error"
+      div(class="alert alert-danger")
+        p #{message}
+        
+  form.form-horizontal(method='post', action='/news/create', enctype='application/x-www-form-urlencoded')
+      fieldset
+          // Form Name
+          legend Th&ecirc;m m&#x1EDB;i b&agrave;i vi&#x1EBF;t
+          // Text input
+          .form-group
+            label.col-md-4.control-label(for='textinput') Ti&ecirc;u &dstrok;&#x1EC1; b&agrave;i vi&#x1EBF;t
+            |         
+            .col-md-6
+              input#textinput.form-control.input-md(name='news_tittle', value='', placeholder='Nhập tiêu đề bài viết', type='text', required='')
+          // Select Basic
+          .form-group
+            label.col-md-4.control-label(for='selectbasic') Chuy&ecirc;n m&#x1EE5;c
+            |         
+            .col-md-6
+              select#selectbasic.form-control(name='news_category', required='')
+                option(selected='selected', value='') L&#x1EF1;a ch&#x1ECD;n Chuy&ecirc;n m&#x1EE5;c
+                |                 
+                option(value='1') cat_name
+                |               &#x9;
+                option(value='2') cat_name2
+                |               &#x9;
+                option(value='3') cat_name3
+          // File Button
+          .form-group
+            label.col-md-4.control-label(for='filebutton') &#x1EA2;nh m&ocirc; t&#x1EA3;
+            |         
+            .col-md-4
+              input#filebutton.input-file(name='news_image', type='file', required='')
+          // Multiple Radios (inline)
+          .form-group
+            label.col-md-4.control-label(for='radios') Status
+            |         
+            .col-md-4
+              label.radio-inline(for='radios-0')
+                input#radios-0(name='news_status', value='1', checked='checked', type='radio')
+                |                 New
+              |             
+              label.radio-inline(for='radios-1')
+                input#radios-1(name='news_status', value='0', type='radio')
+                |                 Old
+          // Textarea
+          .form-group
+            label.col-md-4.control-label(for='textarea') N&#x1ED9;i dung chi ti&#x1EBF;t
+            |         
+            .col-md-6
+              textarea#summernote.form-control(name='news_detail', rows='8', required='') Noi dung
+          // Button (Double)
+          .form-group
+            label.col-md-4.control-label(for='button1id')
+            |         
+            .col-md-8
+              button#button1id.btn.btn-success(type='submit', name='submit') &Dstrok;&#x1ED3;ng &yacute;
+              |             
+              button#button2id.btn.btn-danger(type='reset', name='reset', value='Làm mới') L&agrave;m m&#x1EDB;i

@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+    form.form-horizontal(method='post', action='/user/edit', enctype='multipart/form-data')
+        fieldset
+            // Form Name
+            legend &Dstrok;&#x1ED5;i m&#x1EAD;t kh&#x1EA9;u
+            // Text input
+            .form-group
+                label.col-md-4.control-label(for='textinput') T&ecirc;n      
+                .col-md-6
+                    input#inputName.form-control.input-md(name='name', value='', type='text', readonly='')   
+            .form-group
+                label.col-md-4.control-label(for='textinput') Email       
+                .col-md-6
+                    input#inputMail.form-control.input-md(name='email', value='', type='text', readonly='')  
+            .form-group
+                label.col-md-4.control-label(for='textinput') M&#x1EAD;t kh&#x1EA9;u c&utilde;       
+                .col-md-6
+                    input#inputNewPass.form-control.input-md(name='password', value='', type='password', required='')  
+            .form-group
+                label.col-md-4.control-label(for='textinput') M&#x1EAD;t kh&#x1EA9;u m&#x1EDB;i       
+                .col-md-6
+                    input#inputNewPass.form-control.input-md(name='newPass', value='', type='password', required='')   
+            .form-group
+                label.col-md-4.control-label(for='textinput') X&aacute;c nh&#x1EAD;n m&#x1EAD;t kh&#x1EA9;u        
+                .col-md-6
+                    input#inputComfirmPass.form-control.input-md(name='comfirmPass', value='', type='password', required='')
+                // Button (Double)
+            .form-group
+                label.col-md-4.control-label(for='button1id')         
+                .col-md-8
+                    button#button1id.btn.btn-success(type='submit', name='submit') X&aacute;c nh&#x1EAD;n
+                    |             
+                    button#button2id.btn.btn-danger(type='reset', name='reset', value='Làm mới') L&agrave;m m&#x1EDB;i
