@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  form.form-horizontal(method='post', action='/admin/news/edit', enctype='multipart/form-data')
+  form.form-horizontal(method='post', action='/news/update/#{news.id}', enctype='application/x-www-form-urlencoded')
       fieldset
           // Form Name
           legend S&#x1EED;a b&agrave;i vi&#x1EBF;t
@@ -10,20 +10,18 @@ block content
             label.col-md-4.control-label(for='textinput') Ti&ecirc;u &dstrok;&#x1EC1; b&agrave;i vi&#x1EBF;t
             |         
             .col-md-6
-              input#textinput.form-control.input-md(name='news_tittle', value='', type='text')
+              input#textinput.form-control.input-md(name='news_tittle', value='#{news.news_tittle}', type='text')
           // Select Basic
           .form-group
             label.col-md-4.control-label(for='selectbasic') Chuy&ecirc;n m&#x1EE5;c
             |         
             .col-md-6
               select#selectbasic.form-control(name='news_category')
-                option(selected='selected', value='0') cat_name
-                |                    
-                option(value='1') cat_name1
-                |               &#x9;   
-                option(value='2') cat_name2
-                |               &#x9;   
-                option(value='2') cat_name2
+                each category in categories
+                  if category.id == news.news_category
+                    option(value='#{category.id}' selected='selected') #{category.cat_name}
+                  else
+                    option(value='#{category.id}') #{category.cat_name}
           // File Button
           .form-group
             label.col-md-4.control-label(for='filebutton') &#x1EA2;nh m&ocirc; t&#x1EA3;
@@ -31,26 +29,33 @@ block content
             .col-md-4
               input#filebutton.input-file(name='news_image', type='file')
               |                
-              img(width='150px', src='', value='news_image', alt='', tittle='')
+              img(width='150px', src='/images/#{news.news_image}', value='#{news.news_image}', alt='#{news.news_image}', tittle='#{news.news_image}')
               |             
-              input(type='hidden', name='news_image_temp', value='')
           // Multiple Radios (inline)
           .form-group
             label.col-md-4.control-label(for='radios') Status
             |         
             .col-md-4
-              label.radio-inline(for='radios-0')
-                input#radios-0(name='news_status', value='1', type='radio')
-                |                 New
-              label.radio-inline(for='radios-1')
-                input#radios-1(name='news_status', value='0', type='radio')
-                |                 Old
+              if news.news_status == 1
+                label.radio-inline(for='radios-1')
+                  input#radios-0(name='news_status', value='1', type='radio', checked='checked' )
+                  |                 New
+                label.radio-inline(for='radios-0')
+                  input#radios-1(name='news_status', value='0', type='radio')
+                  |                 Old
+              else
+                label.radio-inline(for='radios-1')
+                  input#radios-0(name='news_status', value='1', type='radio')
+                  |                 New
+                label.radio-inline(for='radios-0')
+                  input#radios-1(name='news_status', value='0', type='radio', checked='checked' )
+                  |                 Old
           // Textarea
           .form-group
             label.col-md-4.control-label(for='textarea') N&#x1ED9;i dung chi ti&#x1EBF;t
             |         
             .col-md-6
-              textarea#summernote.form-control(name='news_detail', rows='8') Noi dung
+              textarea#summernote.form-control(name='news_detail', rows='8') #{news.news_tittle}
           // Button (Double)
           .form-group
             label.col-md-4.control-label(for='button1id')

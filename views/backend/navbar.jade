@@ -14,13 +14,13 @@ nav.navbar.navbar-default
         // End .navbar-header
         #navbar.navbar-collapse.collapse
           ul.nav.navbar-nav
-            li.active
+            li(class={active: currentUrl === '/'})
               a(href='/') Trang chủ               
             li
               a(href='/users') Quản lý thành viên              
             li
               a(href='/category') Quản lý danh mục                
-            li
+            li(class={active: currentUrl === '/news'})
               a(href='/news') Quản lý bài viết            
           ul.nav.navbar-nav.navbar-right
             li

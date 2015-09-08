@@ -17,16 +17,19 @@ block content
             tbody
                 each nam in news
                     tr 
-                        td #{nam.id}                   
+                        td #{nam.id}                
                         td #{nam.news_tittle}             
-                        td #{nam.news_category}                    
-                        td #{nam.news_status}                    
+                        td #{nam.category.cat_name}
+                        if nam.news_status==1
+                            td New  
+                        else
+                            td Old               
                         td
                             a(href='/news/update/#{nam.id}')
                                 span.glyphicon.glyphicon-pencil(aria-hidden='true')
                                 |  Edit                  
                         td
-                            a(href='/news/delete/#{nam.id}')
+                            a(href='/news/destroy/#{nam.id}')
                                 span.glyphicon.glyphicon-trash(aria-hidden='true')
                                 |  Delete       
             .pull-right

@@ -4,12 +4,10 @@ block content
   case status
     when "success"
       div(class="alert alert-success")
-        p #{message}
-
+        p #{message}  
     when "error"
       div(class="alert alert-danger")
-        p #{message}
-        
+        p #{message}   
   form.form-horizontal(method='post', action='/news/create', enctype='application/x-www-form-urlencoded')
       fieldset
           // Form Name
@@ -26,13 +24,9 @@ block content
             |         
             .col-md-6
               select#selectbasic.form-control(name='news_category', required='')
-                option(selected='selected', value='') L&#x1EF1;a ch&#x1ECD;n Chuy&ecirc;n m&#x1EE5;c
-                |                 
-                option(value='1') cat_name
-                |               &#x9;
-                option(value='2') cat_name2
-                |               &#x9;
-                option(value='3') cat_name3
+                option(selected='selected', value='') Lựa chọn chuyên mục
+                  each category in categories              
+                    option(value='#{category.id}') #{category.cat_name}
           // File Button
           .form-group
             label.col-md-4.control-label(for='filebutton') &#x1EA2;nh m&ocirc; t&#x1EA3;
