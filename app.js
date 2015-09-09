@@ -9,6 +9,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var news = require('./routes/news');
 var categories = require('./routes/category');
+var home = require('./routes/home');
 
 var app = express();
 
@@ -25,11 +26,12 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use('/', routes);
 app.use('/news', news);
 app.use('/category', categories);
 app.use('/users', users);
+app.use('/home', home);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

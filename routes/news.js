@@ -13,7 +13,8 @@ router.get('/', function(req, res, next) {
 		}]
 	}).then(function(news) {
 		if (!news) {
-			return res.send(err);
+			res.render('404');
+			return false;
 		}
 		res.render('news/index', {
 			title: 'Quản lý bài viết',
@@ -27,7 +28,7 @@ router.get('/', function(req, res, next) {
 router.get('/create', function(req, res, next) {
 	models.Category.findAll().then(function(category) {
 		res.render('news/create', {
-			title: 'Create a Post',
+			title: 'Quản lý bài viết',
 			categories: category,
 		});
 	});
@@ -45,21 +46,12 @@ router.post('/create', function(req, res) {
 
 	models.New.create(post).then(function(cat) {
 		models.Category.findAll().then(function(category) {
-			if (!cat) {
-				res.render('news/create', {
-					title: 'Create Post',
-					categories: category,
-					status: 'error',
-					message: 'Create Error!'
-				});
-			} else {
-				res.render('news/create', {
-					title: 'Create Post',
-					categories: category,
-					status: 'success',
-					message: 'Create Successful!'
-				});
-			}
+			res.render('news/create', {
+				title: 'Create Post',
+				categories: category,
+				status: (!cat ? 'error' : 'success'),
+				message: (!cat ? 'Create Error!' : 'Create successful!')
+			});
 		});
 	});
 });
@@ -71,11 +63,12 @@ router.get('/update/:id?', function(req, res) {
 	models.New.findById(id)
 		.then(function(data) {
 			if (!data) {
-				return res.send();
+				res.render('404');
+				return false;
 			}
 			models.Category.findAll().then(function(categories) {
 				res.render('news/update', {
-					title: 'Post-Update',
+					title: 'Quản lý bài viết',
 					news: data,
 					categories: categories
 				});
@@ -104,10 +97,14 @@ router.post('/update/:id?', function(req, res) {
 router.get('/destroy/:id?', function(req, res) {
 	var id = req.params.id;
 	models.New.findById(id).then(function(news) {
-		news.destroy()
-			.then(function() {
-				res.redirect('/news');
-			});
+		if (news) {
+			news.destroy()
+				.then(function() {
+					res.redirect('/news');
+				});
+			return false;
+		}
+		res.render('404');
 	});
 });
 module.exports = router;

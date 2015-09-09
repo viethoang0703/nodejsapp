@@ -1,0 +1,24 @@
+doctype
+html(lang='en')
+    head  
+        title= title
+        meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')    
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')   
+        meta(name='viewport', content='width=device-width, initial-scale=1')    
+        meta(name='description', content='')   
+        meta(name='author', content='')   
+        link(rel='stylesheet', type='text/css', href='admins/css/bootstrap.min.css')   
+        link(rel='stylesheet', type='text/css', href='admins/css/bootstrap-theme.min.css') 
+body
+    include ./frontend/navbar.jade
+    .container
+        .row.row-offcanvas.row-offcanvas-right
+            // content
+            block content
+            // End content
+            //sidebar
+            include ./frontend/sidebar.jade
+        //footer
+        include  ./frontend/footer.jade
+    script(type='text/javascript', src='admins/js/jquery-1.11.3.min.js')
+    script(type='text/javascript', src='admins/js/bootstrap.min.js')

@@ -5,47 +5,41 @@ var models = require('../models');
 /**/
 router.get('/', function(req, res) {
 	models.User.findAll()
-		.then(function(user) {
-				if (!user) return res.json({
-					message: 'not exits'
+		.then(function(users) {
+			if (users) {
+				res.render('users/index', {
+					title: 'Quản lý thành viên',
+					users: users,
 				});
-				return res.json(user);
-			},
-			function(err) {
-				return res.send(err);
-			});
+				return false;
+			}
+			res.render('404');
+		});
 });
 
 router.get('/update/:id', function(req, res) {
 	var id = req.params.id;
 	models.User.findById(id)
-		.then(function(category) {
-			if (!category) return res.json({
-				message: 'not exits'
-			});
-			return res.json(category);
-		}, function(err) {
-			return res.send(err);
+		.then(function(user) {
+			if (user) {
+				res.render('users/update', {
+					title: 'Quản lý thành viên',
+					user: user,
+				});
+				return false;
+			}
+			res.render('404');
 		});
 });
 
-router.put('/update/:id', function(req, res) {
+router.post('/update/:id', function(req, res) {
 	var id = req.params.id;
 	models.User.findById(id)
-		.then(function(category) {
-			if (!category) return res.json({
-				message: 'Category does not exits'
-			});
-			category.cat_name = req.body.cat_name;
-			category.cat_status = req.body.cat_status;
-			category.cat_url = req.body.cat_name;
-			category.save().then(function(category) {
-				return res.json({
-					message: 'update Successful!'
-				});
-			}, function(err) {
-				return res.send(err);
-			});
+		.then(function(user) {
+			if (user) {
+				user.password = req.body.password;
+				user.save();
+			}
 		});
 });
 

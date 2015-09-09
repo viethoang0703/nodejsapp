@@ -1,7 +1,14 @@
 extends ../layout
 
 block content
-    form.form-horizontal(method='post', action='category/create', enctype='multipart/form-data')
+    case status
+        when "success"
+          div(class="alert alert-success")
+            p #{message}  
+        when "error"
+          div(class="alert alert-danger")
+            p #{message}  
+    form.form-horizontal(method='post', action='/category/create', enctype='application/x-www-form-urlencoded')
         fieldset
         // Form Name
         legend Danh m&#x1EE5;c m&#x1EDB;i
@@ -14,10 +21,10 @@ block content
         .form-group
             label.col-md-4.control-label(for='radios') Status      
             .col-md-4
-                label.radio-inline(for='radios-0')
+                label.radio-inline(for='radios-1')
                     input#radios-0(name='cat_status', value='1', checked='checked', type='radio')
                     |                 New           
-                label.radio-inline(for='radios-1')
+                label.radio-inline(for='radios-0')
                     input#radios-1(name='cat_status', value='0', type='radio')
                     |                 Old
             // Button (Double)

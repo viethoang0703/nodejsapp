@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-    form.form-horizontal(method='post', action='/user/edit', enctype='multipart/form-data')
+    form.form-horizontal(method='post', action='/users/update/#{user.id}', enctype='multipart/form-data')
         fieldset
             // Form Name
             legend &Dstrok;&#x1ED5;i m&#x1EAD;t kh&#x1EA9;u
@@ -9,11 +9,11 @@ block content
             .form-group
                 label.col-md-4.control-label(for='textinput') T&ecirc;n      
                 .col-md-6
-                    input#inputName.form-control.input-md(name='name', value='', type='text', readonly='')   
+                    input#inputName.form-control.input-md(name='name', value='#{user.name}', type='text', readonly='')   
             .form-group
                 label.col-md-4.control-label(for='textinput') Email       
                 .col-md-6
-                    input#inputMail.form-control.input-md(name='email', value='', type='text', readonly='')  
+                    input#inputMail.form-control.input-md(name='email', value='#{user.email}', type='text', readonly='')  
             .form-group
                 label.col-md-4.control-label(for='textinput') M&#x1EAD;t kh&#x1EA9;u c&utilde;       
                 .col-md-6

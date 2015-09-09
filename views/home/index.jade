@@ -1,0 +1,19 @@
+extends ../template
+
+block content
+	.col-xs-12.col-sm-9
+        .row
+          .col-xs-12.col-sm-2
+            img.img-rounded(width='150px', height='150px', src='#', alt='news_image', tittle='news_image')
+          | &#x9;&#x9;    
+          .col-xs-12.col-sm-10
+            .col-xs-12.col-lg-12
+              h2
+                a(href='news_url') news_tittle
+              | &#x9;&#x9;            
+              p
+                a.btn.btn-default.pull-right(href='news_url', role='button') Chi ti&#x1EBF;t &raquo;
+        | &#x9;&#x9;
+        hr
+      | &#x9;
+      .pull-right

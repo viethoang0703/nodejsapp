@@ -7,23 +7,27 @@ block content
         .table-responsive
             table.table.table-striped.table-hover.table-bordered
                 thead
-                    tr
+                    tr.text-primary
                         th ID                   
                         th Category Name                   
                         th Status                   
                         th Edit                   
                         th Delete           
                 tbody
-                    tr
-                        td categoryid                   
-                        td cat_name                    
-                        td New                    
-                        td
-                            a(href='/category/update')
-                                span.glyphicon.glyphicon-pencil(aria-hidden='true')
-                                |  Edit                  
-                        td
-                            a(href='/category/delete')
-                                span.glyphicon.glyphicon-trash(aria-hidden='true')
-                                |  Delete    
+                    each category in categories
+                        tr
+                            td #{category.id}                 
+                            td #{category.cat_name}                    
+                            if category.cat_status == 1
+                                td.text-info New    
+                            else
+                                td.text-danger Old             
+                            td
+                                a(href='/category/update/#{category.id}')
+                                    span.glyphicon.glyphicon-pencil(aria-hidden='true')
+                                    |  Edit                  
+                            td
+                                a(href='/category/destroy/#{category.id}')
+                                    span.glyphicon.glyphicon-trash(aria-hidden='true')
+                                    |  Delete    
         .pull-right

@@ -10,17 +10,17 @@ nav.navbar.navbar-default
             |                 
             span.icon-bar
           |             
-          a.navbar-brand(href='admin') Blog
+          a.navbar-brand(href='/') Blog
         // End .navbar-header
         #navbar.navbar-collapse.collapse
           ul.nav.navbar-nav
-            li(class={active: currentUrl === '/'})
+            li(class=(title === 'Trang chủ' ? 'active' : ''))
               a(href='/') Trang chủ               
-            li
+            li(class=(title === 'Quản lý thành viên' ? 'active' : ''))
               a(href='/users') Quản lý thành viên              
-            li
+            li(class=(title === 'Quản lý danh mục' ? 'active' : ''))
               a(href='/category') Quản lý danh mục                
-            li(class={active: currentUrl === '/news'})
+            li(class=(title === 'Quản lý bài viết' ? 'active' : ''))
               a(href='/news') Quản lý bài viết            
           ul.nav.navbar-nav.navbar-right
             li

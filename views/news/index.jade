@@ -7,7 +7,7 @@ block content
     .table-responsive
         table.table.table-striped.table-hover.table-bordered
             thead
-                tr
+                tr.text-primary
                     th ID                    
                     th Tittle                    
                     th Category                    
@@ -21,9 +21,9 @@ block content
                         td #{nam.news_tittle}             
                         td #{nam.category.cat_name}
                         if nam.news_status==1
-                            td New  
+                            td.text-info New  
                         else
-                            td Old               
+                            td.text-danger Old               
                         td
                             a(href='/news/update/#{nam.id}')
                                 span.glyphicon.glyphicon-pencil(aria-hidden='true')

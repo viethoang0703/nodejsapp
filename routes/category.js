@@ -6,34 +6,21 @@ var models = require('../models');
 router.get('/', function(req, res) {
 	models.Category.findAll()
 		.then(function(categories) {
-				if (!categories) return res.json({
-					message: 'not exits'
+			if (categories) {
+				res.render('category/index', {
+					title: 'Quản lý danh mục',
+					categories: categories,
 				});
-				return res.json(categories);
-			},
-			function(err) {
-				return res.send(err);
-			});
+				return false;
+			}
+			res.render('404');
+		})
 });
 
 router.get('/create', function(req, res) {
 	res.render('category/create', {
-		title: 'Category-Create'
+		title: 'Quản lý danh mục'
 	});
-});
-
-/* query tra ve ban ghi nhan duoc theo id truyen vao */
-router.get('/update/:id', function(req, res) {
-	var id = req.params.id;
-	models.Category.findById(id)
-		.then(function(category) {
-			if (!category) return res.json({
-				message: 'not exits'
-			});
-			return res.json(category);
-		}, function(err) {
-			return res.send(err);
-		});
 });
 
 /* Thuc hien tao ban ghi moi va luu ban ghi moi vao CSDL*/
@@ -45,50 +32,72 @@ router.post('/create', function(req, res) {
 
 	models.Category.create(category)
 		.then(function(catgegory) {
-			return res.json({
-				message: "Create Successful!"
+			res.render('category/create', {
+				title: 'Quản lý danh mục',
+				status: (!category ? 'error' : 'success'),
+				message: (!category ? 'Create Error!' : 'Create successful!')
 			});
 		});
 });
 
+/* query tra ve ban ghi nhan duoc theo id truyen vao */
+router.get('/update/:id', function(req, res) {
+	var id = req.params.id;
+	models.Category.findById(id).then(function(category) {
+		if (category) {
+			res.render('category/update', {
+				title: 'Quản lý danh mục',
+				category: category
+			});
+			return false;
+		}
+		res.render('404');
+	});
+});
+
 /* Cap nhat lai data cua bar ghi voi id nhan duoc*/
-router.put('/update/:id', function(req, res) {
+router.post('/update/:id', function(req, res) {
 	var id = req.params.id;
 	models.Category.findById(id)
 		.then(function(category) {
-			if (!category) return res.json({
-				message: 'Category does not exits'
-			});
+			if (!category) {
+				res.render('404');
+				return false;
+			}
 			category.cat_name = req.body.cat_name;
 			category.cat_status = req.body.cat_status;
 			category.cat_url = req.body.cat_name;
 
 			category.save()
-				.then(function(category) {
-					return res.json({
-						message: 'update Successful!'
-					});
-				}, function(err) {
-					return res.send(err);
+				.then(function(cat) {
+					if (!cat) {
+						res.render('category/update', {
+							title: 'Quản lý danh mục',
+							status: 'error',
+							message: 'Update Fails!',
+							category: category,
+						});
+						return false;
+					} else {
+						res.redirect('/category');
+					}
 				});
 		});
 });
 
 /* Thuc hien xoa ban ghi voi id nhan duoc*/
-router.delete('/destroy/:id', function(req, res) {
+/* Xoa 1 ban ghi theo id truyen vao*/
+router.get('/destroy/:id?', function(req, res) {
 	var id = req.params.id;
-	models.Category.findById(id)
-		.then(function(category) {
-			if (!category) return res.json({
-				message: 'not found'
-			});
-		category.destroy().then(function() {
-			return res.json({
-				message: 'delete Successful!'
-			});
-		}, function(err) {
-			return res.send(err);
-		});
-		});
+	models.Category.findById(id).then(function(category) {
+		if (category) {
+			category.destroy()
+				.then(function() {
+					res.redirect('/category');
+				});
+			return false;
+		}
+		res.render('404');
+	});
 });
 module.exports = router;
