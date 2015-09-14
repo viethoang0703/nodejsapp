@@ -1,0 +1,21 @@
+extends ../template
+
+block content
+	.col-xs-12.col-sm-9
+		each cat in category	
+            .row
+				.col-xs-12.col-sm-2
+					img.img-rounded(width='150px', height='150px', src='/images/category.news_image', alt='category.news_image', tittle='category.news_image}}')
+				.col-xs-12.col-sm-10
+					.col-xs-12.col-lg-12
+						h2
+							a(href='/news/category.news_url') category.news_tittle
+						|                     
+						p news_detail
+						|                     
+						p
+							a.btn.btn-default.pull-right(href='/news/category.news_url', role='button') Chi ti&#x1EBF;t &raquo;
+			|         
+			hr
+		|     
+		.pull-right

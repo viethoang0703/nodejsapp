@@ -7,8 +7,12 @@ html(lang='en')
         meta(name='viewport', content='width=device-width, initial-scale=1')    
         meta(name='description', content='')   
         meta(name='author', content='')   
-        link(rel='stylesheet', type='text/css', href='admins/css/bootstrap.min.css')   
-        link(rel='stylesheet', type='text/css', href='admins/css/bootstrap-theme.min.css') 
+        link(rel='stylesheet', type='text/css', href='/admins/css/bootstrap.min.css')   
+        link(rel='stylesheet', type='text/css', href='/admins/css/bootstrap-theme.min.css') 
+        style(type='text/css').
+            h2{
+                margin-top: 0;
+            }
 body
     include ./frontend/navbar.jade
     .container
@@ -20,5 +24,5 @@ body
             include ./frontend/sidebar.jade
         //footer
         include  ./frontend/footer.jade
-    script(type='text/javascript', src='admins/js/jquery-1.11.3.min.js')
-    script(type='text/javascript', src='admins/js/bootstrap.min.js')
+    script(type='text/javascript', src='/admins/js/jquery-1.11.3.min.js')
+    script(type='text/javascript', src='/admins/js/bootstrap.min.js')

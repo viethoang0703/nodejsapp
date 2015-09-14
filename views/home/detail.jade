@@ -1,0 +1,15 @@
+extends ../template
+
+block content
+    .col-xs-12.col-sm-9
+        .row
+            .col-xs-12.col-sm-12
+                .panel.panel-primary
+                    .panel-heading
+                        h3.panel-title #{news.news_tittle}              
+                    .panel-body
+                        div
+                            img.img-thumbnail.pull-left(width='150px', height='150px', style='margin-right: 10px', src='/images/#{news.news_image}', alt='#{news.news_image}', tittle='')
+                            |                     
+                            .row.center-block
+                                p #{news.news_detail}
